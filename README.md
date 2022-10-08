@@ -4,4 +4,4 @@ Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWe
 
 ## Autores
 
-- @deyproj ─ Daniel Alejandro Guzman
+- @deyproj ─ Daniel Alejandro Guzman Lopera
