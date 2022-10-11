@@ -1,2 +1,2 @@
 # Proyecto-Final
-integrantes:  Sandra Olmos
+integrantes:  
