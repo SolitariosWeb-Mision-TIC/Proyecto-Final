@@ -5,3 +5,4 @@ Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWe
 ## Autores
 
 - @deyproj ─ Daniel Alejandro Guzman Lopera
+- @Jhonatan9812 ─ *Jhonatan Andrés Aldana Rivera*
