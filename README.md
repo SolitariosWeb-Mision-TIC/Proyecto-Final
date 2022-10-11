@@ -6,3 +6,4 @@ Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWe
 
 - @deyproj ─ Daniel Alejandro Guzman Lopera
 - @Jhonatan9812 ─ *Jhonatan Andrés Aldana Rivera*
+- @BradleyOrtiz - Bradley Ortiz Echavarria
