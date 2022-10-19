@@ -11,3 +11,4 @@ Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWe
 - @Jhonatan9812 ─ *Jhonatan Andrés Aldana Rivera*
 - @EsmeOlmos- Sandra Esmeralda Olmos Alvarez
 - @BradleyOrtiz - Bradley Ortiz Echavarria
+- @alexpebla - Alexander Perez Blanco
