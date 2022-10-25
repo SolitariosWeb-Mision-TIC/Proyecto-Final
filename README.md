@@ -1,3 +1,6 @@
+
+# Proyecto-Final
+
 # Proyecto Final SolitariosWeb
 
 Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWeb". En este proyecto, crearemos una aplicación web usando  MERN Stack, y otras herramientas.
@@ -6,3 +9,6 @@ Este es el proyecto de Misión TIC que realizaremos como el equipo "SolitariosWe
 
 - @deyproj ─ Daniel Alejandro Guzman Lopera
 - @Jhonatan9812 ─ *Jhonatan Andrés Aldana Rivera*
+- @EsmeOlmos- Sandra Esmeralda Olmos Alvarez
+- @BradleyOrtiz - Bradley Ortiz Echavarria
+- @alexpebla - Alexander Perez Blanco
