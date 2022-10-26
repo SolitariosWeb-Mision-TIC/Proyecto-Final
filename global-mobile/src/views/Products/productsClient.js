@@ -29,6 +29,22 @@ const ProductsClient = () => {
     setCarrito([...carrito, producto]);
   };
 
+  const cambiarBoton = (oprimido) => {
+    if (oprimido) {
+      var className = 'btn';
+      className += 'btn-primary';
+    } else {
+      className += 'btn-danger';
+    }
+  }
+
+  const [oprimido, setOprimido] = useState(false);
+  const oprimio = (producto) => {
+    agregarCarrito(producto)
+    setOprimido(!oprimido)
+    cambiarBoton(oprimido)
+  }
+
   return (
     <>
       <h1 className="text-center mt-3">Productos</h1>
@@ -58,9 +74,9 @@ const ProductsClient = () => {
                             href="#a"
                             class="btn btn-primary"
                             name="elemento"
-                            onClick={() => agregarCarrito(producto)}
+                            onClick={() => oprimio(producto)}
                           >
-                            Agregar Carrito
+                            {oprimido ? "Agregar" : "Eliminar"}
                           </a>
                         </div>
                       </div>
