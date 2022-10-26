@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.css";
-import CreateProducts from "./views/Products/create";
+import ProductsClient from "./views/Products/productsClient";
 
 const App = () => {
   return (
     <div>
-      <CreateProducts />
+      <ProductsClient />
     </div>
   );
 };
