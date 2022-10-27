@@ -44,6 +44,9 @@ const ProductsClient = () => {
     return total;
   };
 
+    const vaciarCarro = ()  => {
+      setCarrito([]);
+    }
   const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -55,12 +58,12 @@ const ProductsClient = () => {
       <h1 className="text-center mt-3 text-muted">Productos en venta</h1>
       <br />
       <div className="container">
-        <div className="row">
-          <div className="col-9">
+        <div className="row ">
+          <div className="col-12 col-md-8 col-lg-9">
             <div className="row">
               {productos.map((producto, index) => {
                 return (
-                  <div key={producto.id} className="col-3">
+                  <div key={producto.id} className="col-12 col-md-6 col-lg-4">
                     <div className="card mb-4 shadow-sm">
                       <img
                         className="card-img-top"
@@ -100,15 +103,15 @@ const ProductsClient = () => {
               })}
             </div>
           </div>
-          <div className="col-3">
+          <div className="col-12 col-md-4 col-lg-3">
             <div className="card border-secondary mb-3 rounded shadow-lg">
               <div className="card-body text-secondary text-center">
                 <h5 className="card-title">Carrito</h5>
-                <table class="table card-text">
+                <table class="table table-sm overflow-auto card-text">
                   <thead>
-                    <tr className="text-muted">
-                      <th scope="col">Nombre</th>
-                      <th scope="col">Valor</th>
+                    <tr className="text-muted overflow-auto">
+                      <th >Nombre</th>
+                      <th >Valor</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -126,6 +129,22 @@ const ProductsClient = () => {
                 <p className="card-footer">
                   Total {formatter.format(totalCarro(carrito))}
                 </p>
+                <a
+                  href="#a"
+                  className={"btn btn-outline-success mx-2 my-2 py-1"}
+                  name="elemento"
+
+                >
+                  {"Pagar"}
+                </a>
+                <a
+                  href="#a"
+                  className={"btn btn-outline-danger mr-3  py-1"}
+                  name="elemento"
+                  onClick={vaciarCarro}
+                >
+                  {"Limpiar"}
+                </a>
               </div>
             </div>
           </div>
