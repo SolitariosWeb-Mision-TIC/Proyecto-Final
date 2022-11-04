@@ -21,7 +21,15 @@ const productos = [
   { id: 18, name: "Redmi 10", descripcion: "Test 3", valor: 810000 },
 ];
 
+
+
+
+
 const ProductsClient = () => {
+ 
+
+
+
   const [carrito, setCarrito] = useState([]);
 
   const agregarCarrito = (producto) => {
