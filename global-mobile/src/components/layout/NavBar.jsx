@@ -7,7 +7,9 @@ function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" className="navBar " variant="dark">
       <Container>
-        <Navbar.Brand>Global Mobile</Navbar.Brand>
+        <Link to="/" className="link">
+          <Navbar.Brand>Global Mobile</Navbar.Brand>
+        </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
@@ -18,16 +20,21 @@ function NavBar() {
               </Link>
             </Nav.Link>
             <Nav.Link eventKey={2}>
-              <Link to="/" className="link">
-                Productos en venta
+              <Link to="/edit" className="link">
+                Edicion Productos
               </Link>
             </Nav.Link>
             <Nav.Link eventKey={3}>
+              <Link to="/compras" className="link">
+                Productos en venta
+              </Link>
+            </Nav.Link>
+            <Nav.Link eventKey={4}>
               <Link to="/ventas" className="link">
                 Lista de ventas
               </Link>
             </Nav.Link>
-            <Nav.Link eventKey={4} href="#">
+            <Nav.Link eventKey={5} href="#">
               Salir
             </Nav.Link>
           </Nav>
