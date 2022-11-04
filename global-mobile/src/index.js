@@ -1,17 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import './index.css';
 import "bootstrap/dist/css/bootstrap.css";
-import ProductsClient from "./views/Products/productsClient";
-import SalesList from "./views/Products/salesList";
+import App from "./App";
 
-const App = () => {
-  return (
-    <div>
-      <SalesList />
-    </div>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render( 
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   );
-};
-const root = document.getElementById("root");
-// Parametro 1 elemento a montar
-// Parametro 2 elemento donde se va a injectar
-ReactDOM.render(<App />, root);
