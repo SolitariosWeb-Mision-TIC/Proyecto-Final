@@ -1,33 +1,25 @@
-import React from "react";
-import { useState } from "react";
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-const EditProducts = (props) => {
+const CreateProducts = (props) => {
 
-    const { register, formState: { errors }, handleSubmit, setValue } = useForm({
-        defaultValues: props.currenProducts
-    });
+    const { register, formState: { errors }, handleSubmit } = useForm();
 
-    setValue('name', props.currenProducts.name)
-    setValue('descripcion', props.currenProducts.descripcion)
-    setValue('valor', props.currenProducts.valor)
-
-    const [nombre, setProductoNombre] = useState();
-    const [descripcion, setProductoDescripcion] = useState();
-    const [valor, setProductoValor] = useState();
+    const [productoNombre, setProductoNombre] = useState();
+    const [productoDescripcion, setProductoDescripcion] = useState();
+    const [productoValor, setProductoValor] = useState();
 
 
     const onSubmit = (data, e) => {
         console.log(data)
-        data.id = props.currenProducts.id
-        props.updateProducts(props.currenProducts.id, data)
         e.target.reset();
+        props.addUser(data);
     }
 
     return (
         <div>
             <div className="container">
-                <h1>Editar Producto</h1>
+                <h1>Crear Producto</h1>
             </div>
             <div className="container">
                 <form onSubmit={handleSubmit(onSubmit)} >
@@ -38,7 +30,7 @@ const EditProducts = (props) => {
                             className="form-control"
                             id="productoNombre"
                             onChange={e => setProductoNombre(e.target.value)}
-                            {...register("name", {
+                            {...register("productoNombre", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -56,7 +48,7 @@ const EditProducts = (props) => {
                             className="form-control"
                             id="productoDescripcion"
                             onChange={e => setProductoDescripcion(e.target.value)}
-                            {...register("descripcion", {
+                            {...register("productoDescripcion", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -74,7 +66,7 @@ const EditProducts = (props) => {
                             className="form-control"
                             id="productoValor"
                             onChange={e => setProductoValor(e.target.value)}
-                            {...register("valor", {
+                            {...register("productoValor", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -86,11 +78,11 @@ const EditProducts = (props) => {
                         </div>
                     </div>
                     <button className="btn btn-primary">
-                        Editar
+                        Crear
                     </button>
                 </form>
             </div>
         </div>
     );
 }
-export default EditProducts;
+export default CreateProducts;
