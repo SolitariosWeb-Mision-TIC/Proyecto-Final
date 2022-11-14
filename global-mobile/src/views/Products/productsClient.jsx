@@ -1,32 +1,19 @@
-import React, { useState } from "react";
-
-const productos = [
-  { id: 1, name: "Xiaomi", descripcion: "Test 1", valor: 500000 },
-  { id: 2, name: "Samsung", descripcion: "Test 2", valor: 600000 },
-  { id: 3, name: "Motorola", descripcion: "Test 3", valor: 800000 },
-  { id: 4, name: "Huwei", descripcion: "Test 3", valor: 450000 },
-  { id: 5, name: "Oppo", descripcion: "Test 3", valor: 550000 },
-  { id: 6, name: "Xperia", descripcion: "Test 3", valor: 620000 },
-  { id: 7, name: "Redmi 9", descripcion: "Test 3", valor: 580000 },
-  { id: 8, name: "Redmi 10", descripcion: "Test 3", valor: 570000 },
-  { id: 9, name: "Xiaomi2", descripcion: "Test 1", valor: 620000 },
-  { id: 10, name: "Xiaomi3", descripcion: "Test 1", valor: 300000 },
-  { id: 11, name: "Xiaomi4", descripcion: "Test 1", valor: 350000 },
-  { id: 12, name: "Samsung", descripcion: "Test 2", valor: 590000 },
-  { id: 13, name: "Motorola", descripcion: "Test 3", valor: 800000 },
-  { id: 14, name: "Huwei", descripcion: "Test 3", valor: 560000 },
-  { id: 15, name: "Oppo", descripcion: "Test 3", valor: 720000 },
-  { id: 16, name: "Xperia", descripcion: "Test 3", valor: 6500000 },
-  { id: 17, name: "Redmi 9", descripcion: "Test 3", valor: 4200000 },
-  { id: 18, name: "Redmi 10", descripcion: "Test 3", valor: 810000 },
-];
-
-
-
-
+import React, { useEffect, useState } from "react";
 
 const ProductsClient = () => {
- 
+  const [products, setProducts] = useState([]);
+  const cargarDatos = () => {
+    fetch('http://localhost:1234/api/store', {
+      method: "GET",
+      headers: {"Content-type": "application/json;charset=UTF-8"}
+    })
+        .then(res => res.json())
+        .then(products => { setProducts(products) })
+};
+
+useEffect(() => {
+    cargarDatos()
+}, [])
 
 
 
@@ -69,7 +56,7 @@ const ProductsClient = () => {
         <div className="row ">
           <div className="col-12 col-md-8 col-lg-9">
             <div className="row">
-              {productos.map((producto, index) => {
+              {products.map((producto, index) => {
                 return (
                   <div key={producto.id} className="col-12 col-md-6 col-lg-4">
                     <div className="card mb-4 shadow-sm">
@@ -112,7 +99,7 @@ const ProductsClient = () => {
             </div>
           </div>
           <div className="col-12 col-md-4 col-lg-3">
-            <div className="card border-secondary mb-3 rounded shadow-lg">
+            <div className="card border-secondary mb-3 rounded shadow-lg sticky-top">
               <div className="card-body text-secondary text-center">
                 <h5 className="card-title">Carrito</h5>
                 <table class="table table-sm overflow-auto card-text">

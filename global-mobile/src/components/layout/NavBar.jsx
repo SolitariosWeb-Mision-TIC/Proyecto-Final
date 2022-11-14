@@ -21,7 +21,7 @@ function NavBar() {
             </Nav.Link>
             <Nav.Link eventKey={2}>
               <Link to="/edit" className="link">
-                Edicion Productos
+                Administrar Productos
               </Link>
             </Nav.Link>
             <Nav.Link eventKey={3}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const SalesList = () => {
   const productos = [
@@ -13,7 +13,7 @@ const SalesList = () => {
     { id: 11, name: "Xiaomi4", fecha: "28/10/2022", descripcion: "Test 1", valor: 350000 },
     { id: 12, name: "Samsung", fecha: "28/10/2022", descripcion: "Test 2", valor: 590000 },
     { id: 13, name: "Motorola", fecha: "28/10/2022", descripcion: "Test 3", valor: 800000 },
-    
+
   ];
 
   const formatter = new Intl.NumberFormat("en-US", {
@@ -22,7 +22,21 @@ const SalesList = () => {
     minimumFractionDigits: 0,
   });
 
+  const [sales, setSales] = useState([]);
+
+  const cargarDatos = () => {
+    fetch('http://localhost:1234/api/store')
+      .then(res => res.json())
+      .then(products => { setSales(sales) })
+  };
+
+  useEffect(() => {
+    cargarDatos()
+  }, [])
+
   const viewList = (producto, index) => {
+
+
     return (
       <tr key={index}>
         <td> {producto.id} </td>
@@ -56,7 +70,7 @@ const SalesList = () => {
             <tbody class="table-striped table-hover">
               {productos.map(viewList)}
             </tbody>
-          
+
           </table>
         </div>
       </div>

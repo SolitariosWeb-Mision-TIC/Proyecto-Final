@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useState } from "react";
+import { useForm } from 'react-hook-form'
 
-const CreateProducts = (props) => {
+const EditProducts = (props) => {
 
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, setValue } = useForm({
+        defaultValues: props.currenProducts
+    });
 
-    const [productoNombre, setProductoNombre] = useState();
-    const [productoDescripcion, setProductoDescripcion] = useState();
-    const [productoValor, setProductoValor] = useState();
+    setValue('name', props.currenProducts.name)
+    setValue('descripcion', props.currenProducts.descripcion)
+    setValue('stock', props.currenProducts.stock)
+    setValue('valor', props.currenProducts.valor)
+
+    const [nombre, setProductoNombre] = useState();
+    const [descripcion, setProductoDescripcion] = useState();
+    const [stock, setStock] = useState();
+    const [valor, setProductoValor] = useState();
 
 
     const onSubmit = (data, e) => {
         console.log(data)
+        data.id = props.currenProducts.id
+        props.updateProducts(props.currenProducts.id, data)
         e.target.reset();
-        props.addUser(data);
     }
 
     return (
         <div>
             <div className="container">
-                <h1>Crear Producto</h1>
+                <h1>Editar Producto</h1>
             </div>
             <div className="container">
                 <form onSubmit={handleSubmit(onSubmit)} >
@@ -30,7 +40,7 @@ const CreateProducts = (props) => {
                             className="form-control"
                             id="productoNombre"
                             onChange={e => setProductoNombre(e.target.value)}
-                            {...register("productoNombre", {
+                            {...register("name", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -48,7 +58,7 @@ const CreateProducts = (props) => {
                             className="form-control"
                             id="productoDescripcion"
                             onChange={e => setProductoDescripcion(e.target.value)}
-                            {...register("productoDescripcion", {
+                            {...register("descripcion", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -60,13 +70,31 @@ const CreateProducts = (props) => {
                         </div>
                     </div>
                     <div className="mb-3">
+                        <label className="form-label">Stock</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="productoDescripcion"
+                            onChange={e => setStock(e.target.value)}
+                            {...register("stock", {
+                                required: "Campo Obligatorio",
+                            })}
+                        ></input>
+                        <div>
+                            {errors?.productoDescripcion?.message}
+                        </div>
+                        <div id="DescripcioneHelp" className="form-text">
+                            Stock del producto
+                        </div>
+                    </div>
+                    <div className="mb-3">
                         <label className="form-label">Valor</label>
                         <input
                             type="text"
                             className="form-control"
                             id="productoValor"
                             onChange={e => setProductoValor(e.target.value)}
-                            {...register("productoValor", {
+                            {...register("valor", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
@@ -78,11 +106,11 @@ const CreateProducts = (props) => {
                         </div>
                     </div>
                     <button className="btn btn-primary">
-                        Crear
+                        Editar
                     </button>
                 </form>
             </div>
         </div>
     );
 }
-export default CreateProducts;
+export default EditProducts;
