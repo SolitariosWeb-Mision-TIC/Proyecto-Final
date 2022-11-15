@@ -21,8 +21,8 @@ const EditProducts = (props) => {
 
     const onSubmit = (data, e) => {
         console.log(data)
-        data.id = props.currenProducts.id
-        props.updateProducts(props.currenProducts.id, data)
+        data.id = props.currenProducts._id
+        props.updateProducts(props.currenProducts._id, data)
         e.target.reset();
     }
 
@@ -38,14 +38,14 @@ const EditProducts = (props) => {
                         <input
                             type="text"
                             className="form-control"
-                            id="productoNombre"
+                            name="name"
                             onChange={e => setProductoNombre(e.target.value)}
                             {...register("name", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
                         <div>
-                            {errors?.productoNombre?.message}
+                            {errors?.name?.message}
                         </div>
                         <div id="nombreHelp" className="form-text">
                             Nombre del producto
@@ -56,14 +56,14 @@ const EditProducts = (props) => {
                         <input
                             type="text"
                             className="form-control"
-                            id="productoDescripcion"
+                            name="descripcion"
                             onChange={e => setProductoDescripcion(e.target.value)}
                             {...register("descripcion", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
                          <div>
-                            {errors?.productoDescripcion?.message}
+                            {errors?.descripcion?.message}
                         </div>
                         <div id="DescripcioneHelp" className="form-text">
                             Descripcion del producto
@@ -72,16 +72,16 @@ const EditProducts = (props) => {
                     <div className="mb-3">
                         <label className="form-label">Stock</label>
                         <input
-                            type="text"
+                            type="valor"
                             className="form-control"
-                            id="productoDescripcion"
+                            name="stock"
                             onChange={e => setStock(e.target.value)}
                             {...register("stock", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
                         <div>
-                            {errors?.productoDescripcion?.message}
+                            {errors?.stock?.message}
                         </div>
                         <div id="DescripcioneHelp" className="form-text">
                             Stock del producto
@@ -92,14 +92,14 @@ const EditProducts = (props) => {
                         <input
                             type="text"
                             className="form-control"
-                            id="productoValor"
+                            name="valor"
                             onChange={e => setProductoValor(e.target.value)}
                             {...register("valor", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
                          <div>
-                            {errors?.productoValor?.message}
+                            {errors?.valor?.message}
                         </div>
                         <div id="ValorHelp" className="form-text">
                             Valor del producto

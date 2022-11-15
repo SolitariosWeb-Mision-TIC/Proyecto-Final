@@ -15,7 +15,7 @@ const ListProducts = (props) => {
                     <div className="row">
                         {props.products.map((product) => {
                             return (
-                                <div key={product._id} className="col-12 col-md-6 col-lg-3">
+                                <div key={product._id} className="col-12 col-md-6 col-lg-4">
                                     <div className="card mb-4 shadow-sm">
                                         <img
                                             className="card-img-top"
@@ -36,8 +36,8 @@ const ListProducts = (props) => {
                                                 {product.stock}
                                             </p>
                                             <div className="text-center">
-                                                <a className='btn btn-warning mx-1' href="#" onClick={() => { props.editProducts(product) }}>Editar</a>
-                                                <button className='btn btn-danger' onClick={() => { props.deleteProducts(product.id) }}>Borrar</button>
+                                                <a className='btn btn-warning btn-sm mx-1' onClick={() => { props.editProducts(product) }}>Editar</a>
+                                                <button className='btn btn-danger btn-sm' onClick={() => { props.deleteProducts(product._id) }}>Borrar</button>
                                             </div>
                                         </div>
                                     </div>

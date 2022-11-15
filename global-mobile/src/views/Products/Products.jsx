@@ -6,22 +6,37 @@ import ListProducts from "../../components/products/listProducts";
 const Products = (props) => {
 
     const addProducts = async (product) => {
-        const data2 = await fetch(`http://localhost:1234/api/store`, {
+        fetch(`http://localhost:1234/api/store`, {
             method: 'POST',
             body: JSON.stringify(product),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
-        .then(res => res.json())
-        
+            .then(res => res.json())
+
     }
 
     const deleteProducts = (id) => {
-        //eliminamos en Api
+        fetch(`http://localhost:1234/api/store/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                "Content-type": "application/json; charset=UTF-8",
+            }
+
+        })
+            .then(res => res.text()) // or res.json()
+            .then(res => console.log(res))
     }
 
     const updateProducts = (id, updateProducts) => {
         setEditing(false)
-        //editamos en Api
+        fetch(`http://localhost:1234/api/store/${id}`, {
+            method: 'put',
+            headers: { "Content-type": "application/json; charset=UTF-8" },
+            body: JSON.stringify(updateProducts),
+        })
+            .then(res => res.json())
+
     }
 
     const [products, setProducts] = useState([]);
@@ -57,17 +72,25 @@ const Products = (props) => {
 
     return (
         <>
-            <div>
-                {
-                    editing ? (
-                        <EditProducts currenProducts={currenProducts} updateProducts={updateProducts} />
-                    ) : (
-                        <CreateProducts addProducts={addProducts} />
-                    )
-                }
-                <br />
-                <ListProducts products={products} deleteProducts={deleteProducts} editProducts={editProducts} />
+            <div className="container">
+                <div className="row ">
+                    <div className="col-12 col-md-8 col-lg-8 mt-2">
+                        <ListProducts products={products} deleteProducts={deleteProducts} editProducts={editProducts} />
+                    </div>
+                    <br />
+                    <div className="col-12 col-md-8 col-lg-4">
+                    <div className="sticky-top mt-2" >
+                        {
+                            editing ? (
+                                <EditProducts currenProducts={currenProducts} updateProducts={updateProducts} />
+                            ) : (
+                                <CreateProducts addProducts={addProducts} />
+                            )
+                        }
+                    </div>
+                </div>
             </div>
+        </div >
         </>
     );
 }
