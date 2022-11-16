@@ -68,7 +68,7 @@ const Products = (props) => {
 
     useEffect(() => {
         cargarDatos()
-    }, [])
+    }, [cargarDatos])
 
     return (
         <>

@@ -38,6 +38,17 @@ router.put('/:_id', async (req, res) => {
         }
 })
 
+router.put('/restar', async (req, res) => {
+    const id = req.params._id;
+    const body = req.body;
+    try {
+        const productDB = await Product.findByIdAndUpdate(id, body, {useFindAndModify: false} )
+        res.status(200).json(productDB)
+    } catch (error) {
+        console.log('error', error)
+    }
+})
+
 router.delete('/:_id', async (req, res) => {
     const id = req.params._id;
     try {

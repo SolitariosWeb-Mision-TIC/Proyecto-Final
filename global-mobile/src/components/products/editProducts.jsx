@@ -13,10 +13,10 @@ const EditProducts = (props) => {
     setValue('stock', props.currenProducts.stock)
     setValue('valor', props.currenProducts.valor)
 
-    const [nombre, setProductoNombre] = useState();
-    const [descripcion, setProductoDescripcion] = useState();
+    const [nombre, setNombre] = useState();
+    const [descripcion, setDescripcion] = useState();
     const [stock, setStock] = useState();
-    const [valor, setProductoValor] = useState();
+    const [valor, setValor] = useState();
 
 
     const onSubmit = (data, e) => {
@@ -33,77 +33,65 @@ const EditProducts = (props) => {
             </div>
             <div className="container">
                 <form onSubmit={handleSubmit(onSubmit)} >
-                    <div className="mb-3">
-                        <label className="form-label">Nombre</label>
+                <div className="mb-3 mt-3">
+                        <div>
+                            {errors?.name?.message}
+                        </div>
                         <input
                             type="text"
                             className="form-control"
                             name="name"
-                            onChange={e => setProductoNombre(e.target.value)}
+                            placeholder='Nombre del producto'
+                            onChange={e => setNombre(e.target.value)}
                             {...register("name", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
-                        <div>
-                            {errors?.name?.message}
-                        </div>
-                        <div id="nombreHelp" className="form-text">
-                            Nombre del producto
-                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Descripcion</label>
+                    <div className="my-3">
+                        <div>
+                            {errors?.descripcion?.message}
+                        </div>
                         <input
                             type="text"
                             className="form-control"
                             name="descripcion"
-                            onChange={e => setProductoDescripcion(e.target.value)}
+                            placeholder='Descripcion del producto'
+                            onChange={e => setDescripcion(e.target.value)}
                             {...register("descripcion", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
-                         <div>
-                            {errors?.descripcion?.message}
-                        </div>
-                        <div id="DescripcioneHelp" className="form-text">
-                            Descripcion del producto
-                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Stock</label>
+                    <div className="my-3">
+                        <div>
+                            {errors?.stock?.message}
+                        </div>
                         <input
-                            type="valor"
+                            type="Number"
                             className="form-control"
                             name="stock"
+                            placeholder='Stock del producto'
                             onChange={e => setStock(e.target.value)}
                             {...register("stock", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
-                        <div>
-                            {errors?.stock?.message}
-                        </div>
-                        <div id="DescripcioneHelp" className="form-text">
-                            Stock del producto
-                        </div>
                     </div>
-                    <div className="mb-3">
-                        <label className="form-label">Valor</label>
+                    <div className="my-3">
+                        <div>
+                            {errors?.valor?.message}
+                        </div>
                         <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             name="valor"
-                            onChange={e => setProductoValor(e.target.value)}
+                            placeholder='Valor del producto'
+                            onChange={e => setValor(e.target.value)}
                             {...register("valor", {
                                 required: "Campo Obligatorio",
                             })}
                         ></input>
-                         <div>
-                            {errors?.valor?.message}
-                        </div>
-                        <div id="ValorHelp" className="form-text">
-                            Valor del producto
-                        </div>
                     </div>
                     <button className="btn btn-primary">
                         Editar
