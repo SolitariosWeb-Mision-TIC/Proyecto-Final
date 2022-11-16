@@ -17,12 +17,12 @@ router.get('/', async (_req, res) => {
 router.post('/', async (req, res) => {
     const body = req.body
     try {
-        const productDB = new Product(body)
+        const productDB = new Product(body);
         await productDB.save()
         //await Product,create(body)
-        res.status(200).json(productDB)
+        res.status(200).json(productDB);
     } catch (error) {
-        console.log('error', error)
+        console.log('error', error);
     }
 });
 
@@ -39,14 +39,18 @@ router.put('/:_id', async (req, res) => {
 })
 
 router.put('/restar', async (req, res) => {
-    const id = req.params._id;
+    const ids = req.body.ids;
     const body = req.body;
-    try {
-        const productDB = await Product.findByIdAndUpdate(id, body, {useFindAndModify: false} )
-        res.status(200).json(productDB)
-    } catch (error) {
-        console.log('error', error)
-    }
+    ids.forEach(element => {
+        const productDB = await Product.findById({ _id: element });
+        productDB.stock= productDB.stock-1;
+        const productDB2 = await Product.findByIdAndUpdate(id, productDB, {useFindAndModify: false} );
+        res.status(200).json(productDB2);
+        try {
+        } catch (error) {
+            console.log('error', error)
+        }
+    });
 })
 
 router.delete('/:_id', async (req, res) => {

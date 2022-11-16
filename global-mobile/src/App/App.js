@@ -6,6 +6,7 @@ import SalesList from "../views/Products/salesList";
 import NavBar from '../components/layout/NavBar';
 import Home from "../views/home";
 import Products from "../views/Products/Products";
+import ListTrolley from "../components/products/listTrolley";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/edit"  element={<Products />} />
           <Route path="/compras" element={<ProductsClient />} />
           <Route path="/ventas" element={<SalesList />} />
+          <Route path="/carrito" element={<ListTrolley />} />
         </Routes>
       </Router>
     </>

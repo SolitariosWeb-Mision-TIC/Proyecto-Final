@@ -5,6 +5,16 @@ import ListProducts from "../../components/products/listProducts";
 
 const Products = (props) => {
 
+    const cargarDatos = () => {
+        fetch('http://localhost:1234/api/store')
+            .then(res => res.json())
+            .then(products => { setProducts(products) })
+    };
+
+    useEffect(() => {
+        cargarDatos()
+    }, [cargarDatos])
+
     const addProducts = async (product) => {
         fetch(`http://localhost:1234/api/store`, {
             method: 'POST',
@@ -60,15 +70,8 @@ const Products = (props) => {
         })
     }
 
-    const cargarDatos = () => {
-        fetch('http://localhost:1234/api/store')
-            .then(res => res.json())
-            .then(products => { setProducts(products) })
-    };
+    
 
-    useEffect(() => {
-        cargarDatos()
-    }, [cargarDatos])
 
     return (
         <>
