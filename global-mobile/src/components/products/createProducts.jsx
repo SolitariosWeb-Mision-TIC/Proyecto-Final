@@ -84,7 +84,7 @@ const CreateProducts = (props) => {
                             })}
                         ></input>
                     </div>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={props.cargarDatos()}>
                         Crear
                     </button>
                 </form>

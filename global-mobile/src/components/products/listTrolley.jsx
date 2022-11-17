@@ -1,7 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
-
-
 
 
 const ListTrolley = (props) => {
@@ -11,14 +8,6 @@ const ListTrolley = (props) => {
         currency: "USD",
         minimumFractionDigits: 0,
     });
-
-    const obtenerIds = (carrito) =>{
-        const ids = [];
-        carrito.forEach(element => {
-            ids.push(element.id);
-        });
-        return ids;
-    }
 
     return (
         <>
@@ -56,7 +45,7 @@ const ListTrolley = (props) => {
                       href="#0"
                       className={"btn btn-outline-success mx-2 my-2 py-1"}
                       name="elemento"
-                      onClick={() => props.restarStock(obtenerIds(props.carrito))}
+                      onClick={() => props.restarStock(props.carrito)}
                     >
                       "Pagar"
                     </a>

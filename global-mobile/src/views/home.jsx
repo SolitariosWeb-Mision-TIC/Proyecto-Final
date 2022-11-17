@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import Carousel from "../components/layout/home/corousel";
 
-class Home extends React.Component {
-  render() {
+  const Home = () => {
+    const [home, setHome] = useState(false);
+
+    useState(() => {
+      setHome(true)
+    })
+
     return (
-      <>
-      <h1>Pagina de inicio</h1>
+          <>
+              <Carousel />
       </>
     );
-  }
+  
 }
 export default Home;
