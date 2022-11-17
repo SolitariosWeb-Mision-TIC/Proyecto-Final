@@ -33,7 +33,7 @@ const ListProducts = (props) => {
                                                 {formatter.format(product.valor)}
                                             </p>
                                             <p className="card-text text-center">
-                                                {product.stock}
+                                                Stock: {product.stock}
                                             </p>
                                             <div className="text-center">
                                                 <a className='btn btn-warning btn-sm mx-1' onClick={() => { props.editProducts(product) }}>Editar</a>

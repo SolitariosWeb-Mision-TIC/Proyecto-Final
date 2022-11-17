@@ -3,7 +3,18 @@ import CreateProducts from "../../components/products/createProducts";
 import EditProducts from "../../components/products/editProducts";
 import ListProducts from "../../components/products/listProducts";
 
-const Products = (props) => {
+const Products = () => {
+
+
+    const [products, setProducts] = useState([]);
+    const [editing, setEditing] = useState(false);
+    const [currenProducts, setCurrenProducts] = useState({
+        _id: null,
+        name: "",
+        descripcion: "",
+        stock: "",
+        valor: ""
+    })
 
     const cargarDatos = () => {
         fetch('http://localhost:1234/api/store')
@@ -13,7 +24,7 @@ const Products = (props) => {
 
     useEffect(() => {
         cargarDatos()
-    }, [cargarDatos])
+    }, [])
 
     const addProducts = async (product) => {
         fetch(`http://localhost:1234/api/store`, {
@@ -46,19 +57,7 @@ const Products = (props) => {
             body: JSON.stringify(updateProducts),
         })
             .then(res => res.json())
-
     }
-
-    const [products, setProducts] = useState([]);
-    const [editing, setEditing] = useState(false);
-    const [currenProducts, setCurrenProducts] = useState({
-        _id: null,
-        name: "",
-        descripcion: "",
-        stock: "",
-        valor: ""
-    })
-
     const editProducts = (products) => {
         setEditing(true)
         setCurrenProducts({
@@ -69,10 +68,6 @@ const Products = (props) => {
             valor: products.valor
         })
     }
-
-    
-
-
     return (
         <>
             <div className="container">
@@ -82,18 +77,25 @@ const Products = (props) => {
                     </div>
                     <br />
                     <div className="col-12 col-md-8 col-lg-4">
-                    <div className="sticky-top mt-2" >
-                        {
-                            editing ? (
-                                <EditProducts currenProducts={currenProducts} updateProducts={updateProducts} />
-                            ) : (
-                                <CreateProducts addProducts={addProducts} />
-                            )
-                        }
+                        <div className="sticky-top mt-2" >
+                            {
+                                editing ? (
+                                    <EditProducts
+                                        currenProducts={currenProducts}
+                                        updateProducts={updateProducts}
+                                        cargarDatos={cargarDatos}
+                                    />
+                                ) : (
+                                    <CreateProducts
+                                        addProducts={addProducts}
+                                        cargarDatos={cargarDatos}
+                                    />
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div >
+            </div >
         </>
     );
 }

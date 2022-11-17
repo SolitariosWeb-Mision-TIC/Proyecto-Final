@@ -39,12 +39,14 @@ router.put('/:_id', async (req, res) => {
 })
 
 router.put('/restar', async (req, res) => {
-    const ids = req.body.ids;
-    const body = req.body;
-    ids.forEach(element => {
-        const productDB = await Product.findById({ _id: element });
+    const carrito = req.body.carrito;
+    alert(carrito);
+    carrito.forEach(product => {
+        alert(product.name);
+        const productDB =  product.findById(product._id);
+        alert(productDB);
         productDB.stock= productDB.stock-1;
-        const productDB2 = await Product.findByIdAndUpdate(id, productDB, {useFindAndModify: false} );
+        const productDB2 =  Product.findByIdAndUpdate(id, productDB, {useFindAndModify: false} );
         res.status(200).json(productDB2);
         try {
         } catch (error) {

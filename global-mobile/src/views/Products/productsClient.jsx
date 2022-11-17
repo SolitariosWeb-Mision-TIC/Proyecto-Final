@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ListTrolley from "../../components/products/listTrolley";
-import products from ".//productsdata";
+//import products from ".//productsdata";
 
 
 const ProductsClient = () => {
-  //const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [carrito, setCarrito] = useState([]);
 
 
 
   const [buy, setBuy] = useState(false);
 
-  /*
+  
     const cargarDatos = () => {
       fetch('http://localhost:1234/api/store', {
         method: "GET",
@@ -24,22 +24,24 @@ const ProductsClient = () => {
     useEffect(() => {
       cargarDatos()
     }, [])
-  */
-  const restarStock = (ids) => {
-    alert(ids)
-    fetch(`http://localhost:1234/api/store/restar`, {
-      method: 'put',
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-      body: JSON.stringify(ids),
+  
+    const restarStock = (carrito) => {
+      carrito.forEach((product) => {
+      product.stock = product.stock - 1;
+      fetch(`http://localhost:1234/api/store/${product._id}`, {
+          method: 'put',
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+          body: JSON.stringify(product),
+      })
+          .then(res => res.json())
     })
-      .then(res => res.json())
-  };
+    setBuy(false);
+    cargarDatos();
+  }
 
   const irCarrito = () => {
     setBuy(true);
   }
-
-
 
   const agregarCarrito = (producto) => {
     setCarrito([...carrito, producto]);
@@ -80,7 +82,7 @@ const ProductsClient = () => {
           {
             buy ? (
               <div className="container">
-                <ListTrolley carrito={carrito} totalCarro={totalCarro} vaciarCarro={vaciarCarro} restarStock={restarStock}/>
+                <ListTrolley carrito={carrito} totalCarro={totalCarro} vaciarCarro={vaciarCarro} restarStock={restarStock} cargarDatos={cargarDatos}/>
               </div>
             ) : (
               <div className="col-12 col-md-8 col-lg-9">
@@ -88,7 +90,7 @@ const ProductsClient = () => {
                   <h1 className="text-center mt-3 text-muted">Productos en venta</h1>
                   <br />
                   {products.map((producto, index) => {
-                    return (
+                    return producto.stock > 0 ?(
                       <div key={producto.id} className="col-12 col-md-6 col-lg-4">
                         <div className="card mb-4 shadow-sm">
                           <img
@@ -125,6 +127,8 @@ const ProductsClient = () => {
                           </div>
                         </div>
                       </div>
+                    ):(
+                      <></>
                     );
                   })}
                 </div>

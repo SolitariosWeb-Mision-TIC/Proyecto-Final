@@ -8,10 +8,11 @@ import Home from "../views/home";
 import Products from "../views/Products/Products";
 import ListTrolley from "../components/products/listTrolley";
 
-function App() {
+const App = (props) => {
   return (
     <>
       <Router>
+
         <NavBar />
         <Routes>
           <Route path="/" exact element={<Home />} />

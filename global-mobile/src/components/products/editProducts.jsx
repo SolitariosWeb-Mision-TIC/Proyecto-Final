@@ -93,7 +93,7 @@ const EditProducts = (props) => {
                             })}
                         ></input>
                     </div>
-                    <button className="btn btn-primary">
+                    <button className="btn btn-primary" onClick={() => (props.cargarDatos())}>
                         Editar
                     </button>
                 </form>
