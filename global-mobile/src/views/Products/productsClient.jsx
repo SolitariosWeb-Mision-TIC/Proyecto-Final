@@ -7,13 +7,8 @@ const ProductsClient = () => {
   const [products, setProducts] = useState([]);
   const [carrito, setCarrito] = useState([]);
   const [buy, setBuy] = useState(false);
-
-  const [compra, setCompra] = useState({
-    date: "",
-    products: [],
-    valor: "",
-  })
-
+ 
+  const [compra, setCompra] = useState();
   const cargarDatos = () => {
     fetch('http://localhost:1234/api/store', {
       method: "GET",
@@ -28,6 +23,13 @@ const ProductsClient = () => {
   }, [])
 
   const restarStock = () => {
+    const now = new Date().toLocaleString();
+    setCompra({
+      date: now,
+      products: carrito,
+      total: () => totalCarro(carrito)
+    });
+
     carrito.forEach((product) => {
       product.stock = product.stock - 1;
       fetch(`http://localhost:1234/api/store/${product._id}`, {
@@ -37,15 +39,8 @@ const ProductsClient = () => {
       })
         .then(res => res.json())
     })
-
-    const now = new Date();
-    setCompra({
-      date: now,
-      products: [carrito],
-      valor: totalCarro(carrito),
-    })
-
-    fetch(`http://localhost:1234/api/store`, {
+//    alert(compra)
+    fetch(`http://localhost:1234/api/store/buy`, {
       method: 'POST',
       body: JSON.stringify(compra),
       headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -53,6 +48,7 @@ const ProductsClient = () => {
       .then(res => res.json())
 
     setBuy(false);
+    setCarrito([]);
     cargarDatos();
   }
 
