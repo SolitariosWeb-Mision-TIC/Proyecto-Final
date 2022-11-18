@@ -3,10 +3,9 @@ const {Schema} = mongoose;
 
 const salesSchema = new Schema({
 
-    name: {type: String, required: true},
-    descripcion: {type: String, required: true},
-    stock: {type: Number, required: true},
-    valor: {type: Number, required: true},
+    date: String,
+    products: Array,
+    total: Number,
 });
 
 module.exports = mongoose.model('Sales', salesSchema);

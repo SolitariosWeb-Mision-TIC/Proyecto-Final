@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //const products = require('../models/products');
-const sales = require('../models/sales');
+const Sales = require('../models/sales');
 const Product = require('../models/product');
 const { create } = require('../models/sales');
 
@@ -12,7 +12,7 @@ router.get('/', async (_req, res) => {
     } catch (error) {
         console.log(error);
     }
-});
+}); 
 
 router.post('/', async (req, res) => {
     const body = req.body
@@ -23,6 +23,28 @@ router.post('/', async (req, res) => {
         res.status(200).json(productDB);
     } catch (error) {
         console.log('error', error);
+    }
+});
+
+router.post('/buy', async (req, res) => {
+    const body = req.body
+    console.log(body);
+    try {
+        const salesDB = new Sales(body);
+        await salesDB.save()
+        //await Product,create(body)
+        res.status(200).json(salesDB);
+    } catch (error) {
+        console.log('error', error);
+    }
+});
+
+router.get('/buy', async (_req, res) => {
+    try {
+        const sales = await Sales.find();
+        res.json(sales);
+    } catch (error) {
+        console.log(error);
     }
 });
 
@@ -40,7 +62,6 @@ router.put('/:_id', async (req, res) => {
 
 router.put('/restar', async (req, res) => {
     const carrito = req.body.carrito;
-    alert(carrito);
     carrito.forEach(product => {
         alert(product.name);
         const productDB =  product.findById(product._id);

@@ -6,36 +6,49 @@ import ListTrolley from "../../components/products/listTrolley";
 const ProductsClient = () => {
   const [products, setProducts] = useState([]);
   const [carrito, setCarrito] = useState([]);
-
-
-
   const [buy, setBuy] = useState(false);
+ 
+  const [compra, setCompra] = useState();
+  const cargarDatos = () => {
+    fetch('http://localhost:1234/api/store', {
+      method: "GET",
+      headers: { "Content-type": "application/json;charset=UTF-8" }
+    })
+      .then(res => res.json())
+      .then(products => { setProducts(products) })
+  };
 
-  
-    const cargarDatos = () => {
-      fetch('http://localhost:1234/api/store', {
-        method: "GET",
-        headers: { "Content-type": "application/json;charset=UTF-8" }
-      })
-        .then(res => res.json())
-        .then(products => { setProducts(products) })
-    };
-  
-    useEffect(() => {
-      cargarDatos()
-    }, [])
-  
-    const restarStock = (carrito) => {
-      carrito.forEach((product) => {
+  useEffect(() => {
+    cargarDatos()
+  }, [])
+
+  const restarStock = () => {
+    const now = new Date().toLocaleString();
+    setCompra({
+      date: now,
+      products: carrito,
+      total: () => totalCarro(carrito)
+    });
+
+    carrito.forEach((product) => {
       product.stock = product.stock - 1;
       fetch(`http://localhost:1234/api/store/${product._id}`, {
-          method: 'put',
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-          body: JSON.stringify(product),
+        method: 'put',
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+        body: JSON.stringify(product),
       })
-          .then(res => res.json())
+        .then(res => res.json())
     })
+//    alert(compra)
+    fetch(`http://localhost:1234/api/store/buy`, {
+      method: 'POST',
+      body: JSON.stringify(compra),
+      headers: { "Content-type": "application/json; charset=UTF-8" }
+    })
+      .then(res => res.json())
+
     setBuy(false);
+    setCarrito([]);
     cargarDatos();
   }
 
@@ -82,7 +95,7 @@ const ProductsClient = () => {
           {
             buy ? (
               <div className="container">
-                <ListTrolley carrito={carrito} totalCarro={totalCarro} vaciarCarro={vaciarCarro} restarStock={restarStock} cargarDatos={cargarDatos}/>
+                <ListTrolley carrito={carrito} totalCarro={totalCarro} vaciarCarro={vaciarCarro} restarStock={restarStock} cargarDatos={cargarDatos} />
               </div>
             ) : (
               <div className="col-12 col-md-8 col-lg-9">
@@ -90,7 +103,7 @@ const ProductsClient = () => {
                   <h1 className="text-center mt-3 text-muted">Productos en venta</h1>
                   <br />
                   {products.map((producto, index) => {
-                    return producto.stock > 0 ?(
+                    return producto.stock > 0 ? (
                       <div key={producto.id} className="col-12 col-md-6 col-lg-4">
                         <div className="card mb-4 shadow-sm">
                           <img
@@ -127,7 +140,7 @@ const ProductsClient = () => {
                           </div>
                         </div>
                       </div>
-                    ):(
+                    ) : (
                       <></>
                     );
                   })}
@@ -140,7 +153,7 @@ const ProductsClient = () => {
               <>
               </>
             ) : (
-              
+
               <div className="col-12 col-md-4 col-lg-3">
                 <div className="card border-secondary m-3 rounded shadow-lg sticky-top">
                   <div className="card-body text-secondary text-center">

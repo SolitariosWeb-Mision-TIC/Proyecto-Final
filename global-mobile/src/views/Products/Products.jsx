@@ -52,7 +52,7 @@ const Products = () => {
     const updateProducts = (id, updateProducts) => {
         setEditing(false)
         fetch(`http://localhost:1234/api/store/${id}`, {
-            method: 'put',
+            method: 'PUT',
             headers: { "Content-type": "application/json; charset=UTF-8" },
             body: JSON.stringify(updateProducts),
         })

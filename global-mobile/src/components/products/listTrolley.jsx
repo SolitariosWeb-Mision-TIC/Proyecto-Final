@@ -1,7 +1,12 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
 
 
 const ListTrolley = (props) => {
+
+
 
     const formatter = new Intl.NumberFormat("en-US", {
         style: "currency",
@@ -22,6 +27,8 @@ const ListTrolley = (props) => {
                     </thead>
                     <tbody>
                         {props.carrito.map((product) => {
+
+
                             return (
                                 <tr>
                                     <th>{product.name}</th>
@@ -45,7 +52,7 @@ const ListTrolley = (props) => {
                       href="#0"
                       className={"btn btn-outline-success mx-2 my-2 py-1"}
                       name="elemento"
-                      onClick={() => props.restarStock(props.carrito)}
+                      onClick={() => props.restarStock(props.carrito, )}
                     >
                       "Pagar"
                     </a>
