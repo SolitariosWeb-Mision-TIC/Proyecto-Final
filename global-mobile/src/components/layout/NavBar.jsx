@@ -14,11 +14,11 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto"></Nav>
           <Nav>
-            <Nav.Link eventKey={1}>
+            {/* <Nav.Link eventKey={1}>
               <Link to="/create" className="link">
                 Creacion Productos
               </Link>
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link eventKey={2}>
               <Link to="/edit" className="link">
                 Administrar Productos
